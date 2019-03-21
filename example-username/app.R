@@ -21,7 +21,13 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
-  output$default <- renderText({ Sys.getenv("SHINYPROXY_USERNAME") })
+  output$try <- renderText({ 
+    if(Sys.getenv("SHINYPROXY_USERNAME") != ""){
+      Sys.getenv("SHINYPROXY_USERNAME")
+    } else {
+      "NO USERNAME!"
+    }
+  })
 
   output$userAuth <- renderUI({
     span("Logged in as NOBODY", subtitle = a(icon("sign-out"), "Logout", href="/logout"))
