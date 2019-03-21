@@ -4,8 +4,8 @@ library(shinyjs)
 ui <- fluidPage(
   titlePanel("Hello Shiny!"),
   sidebarLayout(
-    uiOutput("userAuth"),
     sidebarPanel(
+      uiOutput("userAuth"),
       sliderInput(inputId = "bins",
                   label = "Number of bins:",
                   min = 1,
