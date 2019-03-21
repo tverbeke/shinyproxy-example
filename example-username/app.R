@@ -10,7 +10,8 @@ ui <- fluidPage(
                   label = "Number of bins:",
                   min = 1,
                   max = 50,
-                  value = 30)
+                  value = 30),
+      verbatimTextOutput("try", placeholder = FALSE)
     ),
     mainPanel(
       plotOutput(outputId = "distPlot")
@@ -19,14 +20,17 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
+  
+  output$default <- renderText({ Sys.getenv("SHINYPROXY_USERNAME") })
 
   output$userAuth <- renderUI({
+    span("Logged in as NOBODY", subtitle = a(icon("sign-out"), "Logout", href="/logout"))
+    alert("ok")
     userName <- Sys.getenv("SHINYPROXY_USERNAME")
     alert(paste0("User name:", userName))
     if (userName != "") {
       sidebarUserPanel(
-        span("Logged in as ", userName),
-        subtitle = a(icon("sign-out"), "Logout", href="/logout"))
+        span("Logged in as ", userName), subtitle = a(icon("sign-out"), "Logout", href="/logout"))
     }
   })
 
