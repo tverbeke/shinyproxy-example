@@ -1,0 +1,27 @@
+proxy:
+  hide-navbar: false
+  port: 8080
+  logo-url: http://www.openanalytics.eu/sites/www.openanalytics.eu/themes/oa/logo.png
+  landing-page: /
+  heartbeat-rate: 10000
+  heartbeat-timeout: 60000
+  authentication: simple
+  admin-groups: admins
+  shiny.proxy.docker.internal-networking: true
+  users:
+  - name: test
+    password: test
+    groups: admins
+  docker:
+    internal-networking: true
+  specs:
+  - id: example-username
+    display-name: Username Example
+    description: Username Example
+    #container-cmd: ["R", "-e", "shiny::runApp('/root/example-username', port = 2375)"]
+    container-image: acsdesk/example-username
+    access-groups: [admins]
+    container-network: shinyproxy-net
+logging:
+  file:
+    shinyproxy.log
