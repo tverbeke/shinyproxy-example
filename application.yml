@@ -7,7 +7,6 @@ proxy:
   heartbeat-timeout: 60000
   authentication: simple
   admin-groups: admins
-  shiny.proxy.docker.internal-networking: true
   users:
   - name: test
     password: test
